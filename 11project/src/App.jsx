@@ -7,21 +7,23 @@ import  Header  from './components/Header/Header'
 import Footer from "./components/Footer/Footer.jsx";
 
 
+
 function App() {
 const [loading, setLoading] = useState(true);
 const dispatch = useDispatch();
 
-// useEffect(() => {
-//   authService.getCurrentUser()
-//   .then((userData)=>{
-//     if (userData) {
-//       dispatch(login(userData))
-//     } else {
-//       dispatch(logout())
-//     }
-//   })
-//   .finally(()=> setLoading(false));
-// });
+
+useEffect(() => {
+  authService.getCurrentUser()
+  .then((userData) => {
+    if (userData){
+      dispatch(login({userData}))
+    } else{
+      dispatch(logout())
+    }
+})
+.finally(()=>setLoading(false));
+})
 
 useEffect(() => {
   authService.getCurrentUser()
@@ -35,12 +37,13 @@ useEffect(() => {
   .finally(()=> setLoading(false))
 });
 
+
   return !loading ? (
     <div className=' min-h-screen flex flex-wrap'> 
     <div className=' w-full block '>
       <Header/>
       <main>
-      A blog with appwrite
+     <p className=' text-lg '>A blog with appwrite</p> 
       {/* <Outlet/> */}
       </main>
    
@@ -48,6 +51,6 @@ useEffect(() => {
     </div>
     </div>
   ) : (null)
-}
+}                                                                                                                                                                                                       
 
 export default App
