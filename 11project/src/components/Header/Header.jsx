@@ -1,14 +1,15 @@
 import { Link, useNavigate } from "react-router-dom"
-import {Container, Logo, LogoutBtn } from "../index"
+import { Container, Logo, LogoutBtn } from "../index"
 import { useSelector } from "react-redux"
 //import { logout } from "../../store/authSlice"
 
 
 function Header() {
-    const authStatus = useSelector((state)=>state.auth.status);
+    const authStatus = useSelector((state)=>state.auth.status); // এটা বুঝিনি
     const navigate = useNavigate();
 
-    const navItems = [ {
+    const navItems = [ 
+    {
         label: "Home",
         slug: '/',
         active: true
@@ -46,7 +47,7 @@ function Header() {
                     <Logo width ='70px' />
                     </Link>
                 </div>
-                <ul className=" flex ml-auto">
+                <ul className="flex ml-auto">
                     {navItems.map((item)=> 
                     item.active ? (
                         <li key={item.label}>
@@ -70,6 +71,14 @@ function Header() {
        </header>
         
     )
+            
+            
+
+     
 }
 
 export default Header
+
+
+
+
