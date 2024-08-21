@@ -5,6 +5,8 @@ import Logo from "./Logo.jsx";
 import LogoutBtn from "./Header/LogoutBtn.jsx";
 import Button from "./Button.jsx"
 import Select from "./Select.jsx";
+import Input from "./Input.jsx";
+
 
 export {
     Header,
@@ -13,5 +15,6 @@ export {
     Logo,
     LogoutBtn,
     Button ,
-    Select
+    Select,
+    Input
 };
