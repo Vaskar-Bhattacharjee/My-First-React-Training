@@ -3,7 +3,7 @@ import { forwardRef, useId } from "react"
 
 
 const Input = forwardRef( function Input({
-    label,
+    name,
     type = 'text',
     className,
     ...props
@@ -12,10 +12,10 @@ const Input = forwardRef( function Input({
     const Id = useId()
     return (
         <div className="w-full ">
-        {label &&  <label 
+        {name &&  <label
                     className={`inline-block mb-1 pl-1 ${className}`}
                     htmlFor={Id}>
-                        {label}
+                        {name}
                     </label>
         }
     <input 
