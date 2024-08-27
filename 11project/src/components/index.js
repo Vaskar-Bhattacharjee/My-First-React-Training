@@ -6,6 +6,7 @@ import LogoutBtn from "./Header/LogoutBtn.jsx";
 import Button from "./Button.jsx"
 import Select from "./Select.jsx";
 import Input from "./Input.jsx";
+import RTE from "./RTE.jsx";
 
 
 export {
@@ -16,5 +17,6 @@ export {
     LogoutBtn,
     Button ,
     Select,
-    Input
+    Input,
+    RTE,
 };

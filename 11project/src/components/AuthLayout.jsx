@@ -11,16 +11,19 @@ export default function Protected({children, authentication
     const authStatus = useSelector(state => state.auth.status)
 
     useEffect(() => {
+        //TODO make it more easy to understand
+
         if (authentication && authStatus !== authentication) {
             navigate("/login")
-        }else if(){
+        }else if(!authentication && authStatus !== authStatus ){
 
         }
+        setLoader(false)
     }, [authStatus, navigate, authentication]);
 
-    return (
+    return loader? <h1>Loading</h1>:<>{children}</>
         
-    )
+    
 }
 
 export default AuthLayout
