@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux"
 import authService from './appwrite/auth'
 import {login, logout} from './store/authSlice'
-import  Header  from './components/Header/Header'
+import  Header  from './components/Header/Header.jsx'
 import Footer from "./components/Footer/Footer.jsx";
+import { Outlet } from 'react-router-dom';
 
 
 
@@ -42,11 +43,9 @@ useEffect(() => {
     <div className=' min-h-screen flex flex-wrap'> 
     <div className=' w-full block '>
       <Header/>
-      <main>
-     <p className=' text-lg '>A blog with appwrite</p> 
-      {/* <Outlet/> */}
-      </main>
-   
+      <main>  
+      <Outlet/>
+      </main>   
       < Footer/>
     </div>
     </div>

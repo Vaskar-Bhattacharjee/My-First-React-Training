@@ -5,7 +5,10 @@ import appwriteService from "../../appwrite/config"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function postForm({post}) {
+
+
+function PostForm({post}) {
+    
   const { register, handleSubmit, watch, setValue, control,
       getValues
    } = useForm({
@@ -17,9 +20,9 @@ function postForm({post}) {
   
       }
    });
-
    const navigate = useNavigate();
    const userData = useSelector(state => state.auth.userData);
+
    const submit = async (data) => {
       if (post) {
         const file =  data.image[0]? appwriteService.uploadFile(data.image[0]) : (null)
@@ -33,7 +36,7 @@ function postForm({post}) {
                   navigate(`/post/${dbPost.$id}`)
               }
           }
-      )
+      ) //update post ended here
       }
       else {
           const file =  await appwriteService.uploadFile(data.image[0]);
@@ -131,7 +134,7 @@ return (
 }
 
  
-export default postForm 
+export default PostForm;
 
 
     

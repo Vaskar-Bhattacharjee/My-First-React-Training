@@ -1,5 +1,5 @@
-import conf from "../conf/conf";
-import { Client, Databases, Storage, ID  } from "appwrite";
+import conf from "../conf/conf.js";
+import { Client, Databases, Storage, ID, Query } from "appwrite";
 
 export class Service{
 client = new Client()
@@ -7,8 +7,8 @@ databases;
 bucket;
 constructor(){
     this.client
-    .setEndpoint(conf.appwriteUrl)
-    .setProject(conf.appwriteProjectId);
+    .setEndpoint('https://cloud.appwrite.io/v1') 
+    .setProject('66ab0c1c00300941795a');
 
     this.databases = new Databases(this.client)
     this.bucket = new Storage(this.client);
@@ -28,8 +28,8 @@ async createPost({title, slug, content, featuredImage, status, userId}){
             }
 
         )
-    }catch{
-        console.log(`error`)
+    }catch(error){
+        console.log("Appwrite serive :: createPost :: error", error)
     }
 }
 async updatePost( slug, {title, content, featuredImage, status,}){
@@ -47,8 +47,8 @@ async updatePost( slug, {title, content, featuredImage, status,}){
             }
 
         )
-    }catch{
-        console.log(`error`)
+    }catch(error){
+        console.log("Appwrite serive :: updatePost :: error", error)
     }
 }
 async deletePost(slug) {
@@ -60,7 +60,7 @@ async deletePost(slug) {
         );
         return true;
     } catch (error) {
-        console.log(error);
+        console.log("Appwrite serive :: deletePost :: error", error);
         return false;
         
     }
@@ -74,8 +74,23 @@ async getPost(slug) {
         );
       
     } catch (error) {
-        console.log(error);
-        
+        console.log('error', error);
+        return false;
+    }
+}
+
+async getPosts(queries = [Query.equal("status", "active")]){
+    try {
+        return await this.databases.listDocuments(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId,
+            queries,
+            
+
+        )
+    } catch (error) {
+        console.log("Appwrite service :: getPosts :: error", error);
+        return false
     }
 }
 
