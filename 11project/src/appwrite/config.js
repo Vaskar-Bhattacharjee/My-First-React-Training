@@ -16,8 +16,8 @@ constructor(){
 async createPost({title, slug, content, featuredImage, status, userId}){
     try{
         return await this.databases.createDocument(
-            conf.appwriteDatabaseId, 
-            conf.appwriteCollectionId,
+           "66ab13b30035f032768b", //conf.appwriteDatabaseId, 
+            '66ab13ee002bcff940cb', //conf.appwriteCollectionId,
             slug,
             {
                 title,
@@ -35,8 +35,8 @@ async createPost({title, slug, content, featuredImage, status, userId}){
 async updatePost( slug, {title, content, featuredImage, status,}){
     try{
         return await this.databases.updateDocument(
-            conf.appwriteDatabaseId, 
-            conf.appwriteCollectionId,
+           "66ab13b30035f032768b",  //conf.appwriteDatabaseId, 
+           '66ab13ee002bcff940cb',  //conf.appwriteCollectionId,
             slug,
             {
                 title,
@@ -48,19 +48,19 @@ async updatePost( slug, {title, content, featuredImage, status,}){
 
         )
     }catch(error){
-        console.log("Appwrite serive :: updatePost :: error", error)
+        console.log("Appwrite service :: updatePost :: error", error)
     }
 }
 async deletePost(slug) {
     try {
         await this.databases.deleteDocument(
-            conf.appwriteDatabaseId,
-            conf.appwriteCollectionId,
+            "66ab13b30035f032768b",  //conf.appwriteDatabaseId, 
+            '66ab13ee002bcff940cb',  //conf.appwriteCollectionId,
             slug
         );
         return true;
     } catch (error) {
-        console.log("Appwrite serive :: deletePost :: error", error);
+        console.log("Appwrite service :: deletePost :: error", error);
         return false;
         
     }
@@ -68,8 +68,8 @@ async deletePost(slug) {
 async getPost(slug) {
     try {
        return await this.databases.getDocument(
-            conf.appwriteDatabaseId,
-            conf.appwriteCollectionId,
+        "66ab13b30035f032768b",  //conf.appwriteDatabaseId, 
+          '66ab13ee002bcff940cb',  //conf.appwriteCollectionId,
             slug
         );
       
@@ -99,7 +99,7 @@ async getPosts(queries = [Query.equal("status", "active")]){
 async uploadFile(file){
     try {
         return await this.bucket.createFile(
-            conf.appwriteBucketId,
+            "66ab16560023f4aa7578" ,
             ID.unique(),
             file
         )

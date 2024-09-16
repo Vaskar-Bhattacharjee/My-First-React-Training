@@ -1,17 +1,20 @@
 import { forwardRef, useId } from "react";
 
 const Input = forwardRef(function Input({
+    label = " ",
     placeholder,
     type = 'text',
     ...props
 }, ref) {
     const Id = useId();
     return (
-        <div >
+        <div className= "w-full" >
+            <label htmlFor="Id" className= " block text-lg font-lg text-black mb-2v">{label}</label>
            
             <input
                 type={type}
-                className="block w-full px-4 py-2 text-base text-gray-900 bg-gray-100 border border-gray-300 rounded-md shadow-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 hover:border-gray-400 transition-all duration-300 ease-in-out"
+   className="block w-full px-4 py-2 text-base text-gray-900 bg-gray-100 border border-gray-300 rounded-md shadow-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 hover:border-gray-400 transition-all duration-300 ease-in-out mb-3
+      focus:ring-offset-2 focus:ring-offset-gray-50 hover:bg-gray-200"
                 ref={ref}
                 placeholder={placeholder}
                 id={Id}

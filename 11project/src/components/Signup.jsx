@@ -48,7 +48,7 @@ function Signup() {
           <div>
             <div className="mt-2">
             <Input
-                        label="Full Name: "
+                    
                         placeholder="Enter your full name"
                         {...register("name", {
                             required: true,
@@ -60,7 +60,7 @@ function Signup() {
 
             <div className="mt-2">
             <Input
-                        label="Email: "
+                        
                         placeholder="Enter your email"
                         type="email"
                         {...register("email", {
@@ -76,7 +76,7 @@ function Signup() {
           <div>
             <div className="mt-2">
             <Input
-                        label="Password: "
+                      
                         type="password"
                         placeholder="Enter your password"
                         {...register("password", {
