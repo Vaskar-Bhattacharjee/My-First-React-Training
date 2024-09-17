@@ -15,7 +15,8 @@ function PostForm({post}) {
       defaultValues: {
           title: post?.title || "",
           slug : post?.content || "",
-          content: post?.content || "",        
+          content: post?.content || "", 
+          featuredImage: post?.featuredImage || "",   
           status: post?.status || "active",
   
       }
@@ -26,7 +27,7 @@ function PostForm({post}) {
    const submit = async (data) => {
       if (post) {
         const file =  data.image[0]? appwriteService.uploadFile(data.image[0]) : (null)
-          if (file) {
+          if (file && post.featuredImage) {
               appwriteService.deleteFile(post.featuredImage)
           }
           const dbPost = await appwriteService.updatePost(post.$id, {

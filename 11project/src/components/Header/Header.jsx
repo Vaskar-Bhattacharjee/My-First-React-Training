@@ -1,80 +1,93 @@
-import {Container, Logo, LogoutBtn} from '../index'
-import { Link } from 'react-router-dom'
-import {useSelector} from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { Container, Logo, LogoutBtn } from '../index';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status)
-  const navigate = useNavigate()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const authStatus = useSelector((state) => state.auth.status);
+  const navigate = useNavigate();
 
   const navItems = [
-    {
-      name: 'Home',
-      slug: "/",
-      active: true
-    }, 
-    {
-      name: "Login",
-      slug: "/login",
-      active: !authStatus,
-  },
-  {
-      name: "Signup",
-      slug: "/signup",
-      active: !authStatus,
-  },
-  {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-  },
-  {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-  },
-  ]
+    { name: 'Home', slug: '/', active: true },
+    { name: 'Login', slug: '/login', active: !authStatus },
+    { name: 'Signup', slug: '/signup', active: !authStatus },
+    { name: 'All Posts', slug: '/all-posts', active: authStatus },
+    { name: 'Add Post', slug: '/add-post', active: authStatus }
+  ];
 
+  // Function to handle navigation and close menu
+  const handleNavClick = (slug) => {
+    navigate(slug); // Navigate to the slug
+    setIsMenuOpen(false); // Close the menu after clicking
+  };
 
   return (
-    <header className='py-4 shadow-lg bg-gradient-to-r from-gray-700 to-gray-900 sticky top-0 z-50'>
-    <Container>
-      <nav className='flex items-center'>
-        <div className='mr-6'>
-          <Link to='/'>
-            <Logo width='70px' />
-          </Link>
-        </div>
-        <ul className='flex ml-auto items-center space-x-6'>
-          {navItems.map((item) =>
-            item.active ? (
-              <li key={item.name}>
-                <button
-                  onClick={() => navigate(item.slug)}
-                  className='inline-block px-6 py-2 text-gray-100 font-medium rounded-full 
-                  bg-gradient-to-r from-gold-500 to-burgundy-600 hover:bg-gradient-to-l
-                  hover:from-gold-600 hover:to-burgundy-700 transition-all duration-300 ease-in-out
-                  focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2'
-                >
-                  {item.name}
-                </button>
+    <header className="py-4 shadow-lg bg-gradient-to-r from-gray-700 to-gray-900 sticky top-0 z-50">
+      <Container>
+        <nav className="flex items-center justify-between">
+          {/* Logo */}
+          <div className="mr-6">
+            <Link to="/">
+              <Logo width="70px" />
+            </Link>
+          </div>
+
+          {/* Hamburger Menu for Mobile */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-100 focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <ul
+            className={`${
+              isMenuOpen ? 'block' : 'hidden'
+            } lg:flex ml-auto items-center space-y-4 lg:space-y-0 lg:space-x-6 mt-4 lg:mt-0`}
+          >
+            {navItems.map((item) =>
+              item.active ? (
+                <li key={item.name}>
+                  <button
+                    onClick={() => handleNavClick(item.slug)}
+                    className="inline-block px-6 py-2 text-gray-100 font-medium rounded-lg bg-gradient-to-r from-gold-500 to-burgundy-600 hover:bg-gradient-to-l hover:from-gold-600 hover:to-burgundy-700 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2"
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ) : null
+            )}
+            {authStatus && (
+              <li>
+                <LogoutBtn />
               </li>
-            ) : null
-          )}
-          {authStatus && (
-            <li>
-              <LogoutBtn />
-            </li>
-          )}
-        </ul>
-      </nav>
-    </Container>
-  </header>
-  
-  )
+            )}
+          </ul>
+        </nav>
+      </Container>
+    </header>
+  );
 }
 
-export default Header
+export default Header;
 
 
 
