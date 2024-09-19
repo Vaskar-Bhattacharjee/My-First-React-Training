@@ -8,42 +8,44 @@ export class Service{
     
     constructor(){
         this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId);
+        .setEndpoint("https://cloud.appwrite.io/v1")
+        .setProject("66ab0c1c00300941795a");
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({title, slug, content, featureimage, status, userId}){
         try {
             return await this.databases.createDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+                "66ab13b30035f032768b",
+                "66ab13ee002bcff940cb",
                 slug,
                 {
                     title,
                     content,
-                    featuredImage,
+                    featureimage,
                     status,
                     userId,
                 }
             )
+          
         } catch (error) {
-            console.log("Appwrite serive :: createPost :: error", error);
+            console.log("Appwrite service :: createPost :: error", error);
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status}){
+    async updatePost(slug, {title, content, featureimage, status}){
         try {
             return await this.databases.updateDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
+               "66ab13b30035f032768b",
+                "66ab13ee002bcff940cb",
                 slug,
                 {
                     title,
                     content,
-                    featuredImage,
+                    featureimage,
                     status,
+                    fileId,
 
                 }
             )
@@ -72,7 +74,7 @@ export class Service{
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug
+                slug,
             
             )
         } catch (error) {
@@ -86,7 +88,7 @@ export class Service{
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                queries,
+                queries
                 
 
             )
@@ -103,7 +105,7 @@ export class Service{
             return await this.bucket.createFile(
                 "66ab16560023f4aa7578",
                 ID.unique(),
-                file
+                file,
             )
         } catch (error) {
             console.log("Appwrite serive :: uploadFile :: error", error);
@@ -124,14 +126,17 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
-        return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
-            fileId
+    async getFilePreview(fileId){
+        
+        return  this.bucket.getFilePreview(
+         "66ab16560023f4aa7578",
+         fileId,
+            
         )
-    }
+    
+}
 }
 
 
-const service = new Service()
-export default service
+const service = new Service();
+export default service; 

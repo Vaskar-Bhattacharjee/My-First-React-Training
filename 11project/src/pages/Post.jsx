@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import appwriteService from "../appwrite/config";
+import service from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+
 
 export default function Post() {
     const [post, setPost] = useState(null);
@@ -16,7 +17,7 @@ export default function Post() {
 
     useEffect(() => {
         if (slug) {
-            appwriteService.getPost(slug).then((post) => {
+            service.getPost(slug).then((post) => {
                 if (post) setPost(post);
                 else navigate("/");
             });
@@ -24,9 +25,9 @@ export default function Post() {
     }, [slug, navigate]);
 
     const deletePost = () => {
-        appwriteService.deletePost(post.$id).then((status) => {
+        service.deletePost(post.$id).then((status) => {
             if (status) {
-                appwriteService.deleteFile(post.featuredImage);
+                service.deleteFile(post.featureimage);
                 navigate("/");
             }
         });
@@ -37,7 +38,7 @@ export default function Post() {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
+                        src={service.getFilePreview(post.featureimage)}
                         alt={post.title}
                         className="rounded-xl"
                     />
@@ -45,9 +46,9 @@ export default function Post() {
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
-                                </Button>
+                                <Button 
+                                children={Edit}
+                                />
                             </Link>
                             <Button bgColor="bg-red-500" onClick={deletePost}>
                                 Delete

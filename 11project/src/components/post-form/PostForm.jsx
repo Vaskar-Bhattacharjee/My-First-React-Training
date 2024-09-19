@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Button, Input, Select, RTE } from "../index";
-import appwriteService from "../../appwrite/config"
+import service from "../../appwrite/config"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -14,9 +14,9 @@ function PostForm({post}) {
    } = useForm({
       defaultValues: {
           title: post?.title || "",
-          slug : post?.content || "",
+          slug : post?.$id || "",
           content: post?.content || "", 
-          featuredImage: post?.featuredImage || "",   
+          featureimage: post?.featureimage || "",   
           status: post?.status || "active",
   
       }
@@ -26,13 +26,13 @@ function PostForm({post}) {
 
    const submit = async (data) => {
       if (post) {
-        const file =  data.image[0]? appwriteService.uploadFile(data.image[0]) : (null)
-          if (file && post.featuredImage) {
-              appwriteService.deleteFile(post.featuredImage)
+        const file =  data.image[0]? service.uploadFile(data.image[0]) : (null)
+          if (file && post.featureimage) {
+              service.deleteFile(post.featureimage)
           }
-          const dbPost = await appwriteService.updatePost(post.$id, {
+          const dbPost = await service.updatePost(post.$id, {
               ...data,
-              featuredImage: file ? file.$id : undefined,
+              featureimage: file ? file.$id : undefined,
          
           }    
       )      
@@ -42,11 +42,11 @@ function PostForm({post}) {
       //update post ended here
       }
       else {
-          const file =  await appwriteService.uploadFile(data.image[0]);
+          const file =  await service.uploadFile(data.featureimage[0]);
           if (file) {
-              const fileId =file.$id
-              data.featuredImage = fileId
-             const dbPost =  await appwriteService.createPost({
+              let fileId = file.$id
+              data.featureimage = fileId
+             const dbPost =  await service.createPost({
               ...data,
                  userId : userData.$id,
 
@@ -108,12 +108,12 @@ return (
       label="Featured Image :"
       type="file"
       accept="image/png, image/jpg, image/jpeg, image/gif"
-      {...register("image", { required: !post })}
+      {...register("featureimage", { required: !post })}
     />
     {post && (
       <div className="w-full mb-4">
         <img
-          src={appwriteService.getFilePreview(post.featuredImage)}
+          src={service.getFilePreview(post.featureimage)}
           alt={post.title}
           className="rounded-lg shadow-md"
         />
