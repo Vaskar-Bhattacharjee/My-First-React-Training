@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
 
+
 export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
@@ -46,11 +47,11 @@ export default function Post() {
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button 
-                                children={Edit}
-                                />
+                            <Button >
+                                Edit
+                            </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
+                            <Button onClick={deletePost}>
                                 Delete
                             </Button>
                         </div>

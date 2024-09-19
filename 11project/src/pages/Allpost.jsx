@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import service from '../appwrite/config'
 import { Container, PostCard } from '../components/index'
 
@@ -6,16 +6,20 @@ function Allpost() {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState(null);
 
-
+     useEffect(() => {
         service.getPost([]).then((posts) => {
             if (posts) {
                 setPosts(posts.documents);
+                
+                
             }
         }).catch((err) => {
             setError('Failed to load posts', err);
             console.log(error);
         });
     
+     }, [error]);
+  
 
     return (
         <div className='w-full py-8' >

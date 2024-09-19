@@ -13,8 +13,11 @@ function Home() {
     });
   if (posts.length === 0 ) {
     return (
-        <Container>
-            <h2>No posts yet</h2>
+        <Container className= "w-full">
+<h1 className="w-full text-4xl font-bold text-gray-800 text-center p-6  rounded-lg shadow-md">
+    Login to See Posts
+</h1>
+
         </Container>
     )
   }

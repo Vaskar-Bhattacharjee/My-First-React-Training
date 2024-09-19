@@ -5,8 +5,11 @@ function PostCard({$id, title, featureimage}) {
         <Link to={`/post/${$id}`}>
             <div className="w-full bg-gray-100 rounded-xl p-4">
                 <div className='w-full justify-center mb-4'>
-                    <img src={service.getFilePreview(featureimage)} 
-                    alt={title} className='rounded-xl' />
+                    <img
+                    src={featureimage ? service.getFilePreview(featureimage) : '/path/to/default/image.jpg'}
+                    alt={title}
+                    className='rounded-xl'
+                    />
                     <h2
                     className='text-xl font-bold'
                     >{title}</h2>

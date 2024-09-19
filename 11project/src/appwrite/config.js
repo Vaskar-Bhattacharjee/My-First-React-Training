@@ -126,7 +126,7 @@ export class Service{
         }
     }
 
-    async getFilePreview(fileId){
+     getFilePreview(fileId){
         
         return  this.bucket.getFilePreview(
          "66ab16560023f4aa7578",
@@ -134,7 +134,7 @@ export class Service{
             
         )
     
-}
+    }
 }
 
 
