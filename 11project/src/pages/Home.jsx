@@ -14,7 +14,7 @@ function Home() {
   if (posts.length === 0 ) {
     return (
         <Container className= "w-full">
-<h1 className="w-full text-4xl font-bold text-gray-800 text-center p-6  rounded-lg shadow-md">
+<h1 className="w-full text-4xl font-bold text-gray-800 text-center p-6 bg-transparent rounded-lg shadow-md">
     Login to See Posts
 </h1>
 

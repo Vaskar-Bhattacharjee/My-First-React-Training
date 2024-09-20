@@ -100,7 +100,7 @@ return (
         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
       }}
     />
-    <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} className="mb-4" />
+    <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} className="mb-4 bg-slate-800" />
   </div>
   
   <div className="w-1/3 px-2">
