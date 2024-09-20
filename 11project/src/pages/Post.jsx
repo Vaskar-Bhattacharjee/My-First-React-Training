@@ -41,7 +41,7 @@ export default function Post() {
                     <img
                         src={service.getFilePreview(post.featureimage)}
                         alt={post.title}
-                        className="rounded-xl"
+                        className="rounded-xl h-80 w-1/2 object-cover"
                     />
 
                     {isAuthor && (
