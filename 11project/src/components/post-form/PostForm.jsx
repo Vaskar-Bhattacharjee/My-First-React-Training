@@ -107,7 +107,7 @@ return (
     <Input
       label="Featured Image :"
       type="file"
-      accept="image/png, image/jpg, image/jpeg, image/gif "
+      accept="image/png, image/jpg, image/jpeg, image/gif 1 "
       {...register("featureimage", { required: !post })}
     />
     {post && (
