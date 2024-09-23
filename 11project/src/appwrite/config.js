@@ -95,6 +95,7 @@ export class Service{
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error", error);
             return false
+
         }
     }
 
@@ -102,6 +103,7 @@ export class Service{
 
     async uploadFile(file){
         try {
+            
             return await this.bucket.createFile(
                 "66ab16560023f4aa7578",
                 ID.unique(),

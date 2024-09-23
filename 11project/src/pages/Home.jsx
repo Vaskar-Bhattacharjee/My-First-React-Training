@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import service from '../appwrite/config'
-import { Container, PostCard } from '../components'
+import { Container, Login, PostCard } from '../components'
+Login
 
 function Home() {
     const [posts, setPosts] = useState([])
@@ -17,7 +18,7 @@ function Home() {
         };
         fetchPosts();
     }, []);
-  if (posts.length === 0 ) {
+  if (posts.length === 0 && Login== true) {
     return (
         <Container className= "w-full">
 <h1 className="w-full text-4xl font-bold text-gray-800 text-center p-6 bg-transparent rounded-lg shadow-md">
@@ -28,21 +29,25 @@ function Home() {
     )
   } 
     return (
-        <div className='w-full py-8 min-h-lvh' >
+        <div className='w-full py-8 mb-[10rem] min-h-3.5' >
             <p className='text-4xl font-bold
-             text-green-800 p-2 mb-3' >
+             text-green-800 p-2  ' >
                 Here is all mini blog for you: </p>
-        <Container>
-            <div className=' flex flex-wrap'>
-                {posts.map((post) => (
-                    <div className='p-2 w-1/4' key={post.$id}>
-                        <PostCard  {... post} />
-                    </div>
-                    
-                ))}
-    
-            </div>
-        </Container>
+                
+<Container>
+    {posts.length !== 0 ? (
+        <div className='flex flex-wrap '>
+            {posts.map((post) => (
+                <div className='p-2 w-1/4' key={post.$id}>
+                    <PostCard {...post} />
+                </div>
+            ))}
+        </div>
+    ) : (
+        <p className='text-4xl p-2 mb-[-10rem]'>No posts yet</p>
+    )}
+</Container>
+
     </div>
     )
   }

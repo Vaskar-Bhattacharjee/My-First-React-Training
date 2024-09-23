@@ -25,39 +25,46 @@ function PostForm({post}) {
    const userData = useSelector(state => state.auth.userData);
 
    const submit = async (data) => {
-      if (post) {
-        const file =  data.image[0]? service.uploadFile(data.image[0]) : (null)
-          if (file && post.featureimage) {
-              service.deleteFile(post.featureimage)
-          }
-          const dbPost = await service.updatePost(post.$id, {
-              ...data,
-              featureimage: file ? file.$id : undefined,
-         
-          }    
-      )      
-       if (dbPost) {
-        navigate(`/post/${dbPost.$id}`)
-    }
-      //update post ended here
+    try {
+      let file = null;
+  
+      // Check if a new image was selected
+      if (data.featureimage && data.featureimage.length > 0) {
+        file = await service.uploadFile(data.featureimage[0]); // Upload the new file
+        if (post && post.featureimage) {
+          // If the post already has a feature image, delete the old one
+          await service.deleteFile(post.featureimage.$id);
+        }
       }
-      else {
-          const file =  await service.uploadFile(data.featureimage[0]);
-          if (file) {
-              let fileId = file.$id
-              data.featureimage = fileId
-             const dbPost =  await service.createPost({
-              ...data,
-                 userId : userData.$id,
-
-             })
-             if (dbPost) {
-                 navigate(`/post/${dbPost.$id}`)
-             }
+  
+      if (post) {
+        const dbPost = await service.updatePost(post.$id, {
+          ...data,
+          featureimage: file ? file.$id : post.featureimage?.$id, // Use new file or keep the previous image
+        });
+  
+        if (dbPost) {
+          navigate(`/post/${dbPost.$id}`);
+        }
+      } else {
+        if (file) {
+          data.featureimage = file.$id; // Only set featureimage if a new file is uploaded
+          const dbPost = await service.createPost({
+            ...data,
+            userId: userData.$id,
+          });
+  
+          if (dbPost) {
+            navigate(`/post/${dbPost.$id}`);
           }
-   }
+        }
+      }
+    } catch (error) {
+      console.log("Submit problem: ", error);
+    }
+  };
 
-}
+
 
 const slugTransform = useCallback((value) => {
   if (value && typeof value === 'string') {
