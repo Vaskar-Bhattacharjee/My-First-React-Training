@@ -38,6 +38,7 @@ export default function Post() {
     }, [slug, navigate]);
 
     const deletePost = async () => {
+        if (!post) return; // Guard clause to ensure post exists
         try {
             const status = await service.deletePost(post.$id);
             if (status) {
@@ -50,7 +51,7 @@ export default function Post() {
     };
 
     if (loading) {
-        return <div>Loading...</div>; // Add a loading indicator
+        return <div>Loading...</div>; // Consider adding a more user-friendly loading indicator
     }
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
@@ -59,28 +60,30 @@ export default function Post() {
         <div className="py-8">
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-                    <img
-                        src={service.getFilePreview(post.featureimage)}
-                        alt={post.title}
-                        className="rounded-xl h-80 w-1/2 object-cover"
-                    />
-
-                    {isAuthor && (
-                        <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button>Edit</Button>
-                            </Link>
-                            <Button onClick={deletePost}>Delete</Button>
-                        </div>
-                    )}
+                    <div className="flex items-center justify-center h-80 w-full max-w-xl overflow-hidden">
+                        <img
+                            src={service.getFilePreview(post.featureimage)}
+                            alt={post.title}
+                            className="rounded-xl h-full w-full object-cover 	object-fit: cover"
+                        />
+                    </div>
                 </div>
                 <div className="w-full mb-6">
                     <h1 className="text-2xl font-bold">{post.title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="browser-css mb-6">
                     {parse(post.content)}
                 </div>
+                {isAuthor && (
+                    <div className="flex justify-end space-x-4">
+                        <Link to={`/edit-post/${post.$id}`}>
+                            <Button >Edit</Button>
+                        </Link>
+                        <Button onClick={deletePost} danger>Delete</Button>
+                    </div>
+                )}
             </Container>
         </div>
     ) : null;
 }
+

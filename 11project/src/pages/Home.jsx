@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import service from '../appwrite/config'
-import { Container, Login, PostCard } from '../components'
-Login
+import { Container, Login, PostCard, Button } from '../components'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 
 function Home() {
     const [posts, setPosts] = useState([])
+    const navigate = useNavigate()
+    const authStatus = useSelector((state) => state.auth.status); 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -44,8 +48,26 @@ function Home() {
             ))}
         </div>
     ) : (
-        <p className='text-4xl p-2 mb-[-10rem]'>No posts yet</p>
-    )}
+        <div className='flex flex-wrap 	flex-col justify-center '>
+        <p className='text-3xl p-2 mb-lg-[-2rem] mb-sm-[5rem]'>No posts yet.</p> 
+     
+        {!authStatus && ( // Conditionally render the button
+                            <div className='flex justify-center flex-col mt-[5rem] mb-[-5rem]'>
+                                <p className='text-4xl p-2 mt-sm-[5rem] italic'>You are not Logged in. Login to see posts</p>
+                               <div className='flex justify-center items-center '>
+                               <Button 
+                                    onClick={() => navigate("/login")}
+                                    className="w-48"
+                                >
+                                    Login
+                                </Button>
+                                
+                                </div> 
+                            </div>
+                        )}
+                    </div>
+                )}
+    
 </Container>
 
     </div>

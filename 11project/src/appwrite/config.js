@@ -45,7 +45,7 @@ export class Service{
                     content,
                     featureimage,
                     status,
-                    fileId,
+                    
 
                 }
             )

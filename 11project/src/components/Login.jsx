@@ -2,7 +2,7 @@ import {useState}from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import{login as authLogin} from '../store/authSlice'
 import {Button, Input, Logo} from './index'
-import authService from '../appwrite/auth'
+import service from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
@@ -19,9 +19,9 @@ function Login() {
     const login = async (data) => {
         setError("")
         try {
-          const session = await authService.login({...data})
+          const session = await service.login({...data})
           if (session) {
-            const userData = await authService.getCurrentUser()
+            const userData = await service.getCurrentUser()
             if (userData) dispatch(authLogin(userData))
             navigate('/')
           }
@@ -55,6 +55,7 @@ function Login() {
                              
                               placeholder="Enter your email"
                               type="email"
+                              autoComplete="new-email" 
                               {...register("email", {
                                   required: true,
                                   validate: {
@@ -70,6 +71,7 @@ function Login() {
                   <Input
                               
                               type="password"
+                              autoComplete="new-password" 
                               placeholder="Enter your password"
                               {...register("password", {
                                   required: true,})}

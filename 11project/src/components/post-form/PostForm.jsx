@@ -38,9 +38,10 @@ function PostForm({post}) {
       }
   
       if (post) {
+        // If the post already exists, update it
         const dbPost = await service.updatePost(post.$id, {
           ...data,
-          featureimage: file ? file.$id : post.featureimage?.$id, // Use new file or keep the previous image
+         featureimage: file ? file.$id : (post.featureimage ? post.featureimage.$id : null), // Use new file or keep the previous image
         });
   
         if (dbPost) {
@@ -48,7 +49,7 @@ function PostForm({post}) {
         }
       } else {
         if (file) {
-          data.featureimage = file.$id; // Only set featureimage if a new file is uploaded
+          data.featureimage = file.$id; 
           const dbPost = await service.createPost({
             ...data,
             userId: userData.$id,

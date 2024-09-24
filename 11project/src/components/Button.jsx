@@ -2,6 +2,7 @@
 
 function Button({ 
     children,
+    className = '',
     type = 'button',
     ...props
 
@@ -13,7 +14,7 @@ function Button({
     hover:from-gray-900 hover:to-black hover:shadow-xl 
     transition-all duration-300 ease-in-out 
     focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-offset-2 
-    active:scale-95 active:shadow-sm mb-3`} { ...props} >
+    active:scale-95 active:shadow-sm mb-3 ${className} `} { ...props} >
         {children}
         </button>
         

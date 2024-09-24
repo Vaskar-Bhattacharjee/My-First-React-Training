@@ -62,6 +62,7 @@ function Signup() {
             <Input
                         
                         placeholder="Enter your email"
+                        autoComplete="new-email" 
                         type="email"
                         {...register("email", {
                             required: true,
@@ -79,6 +80,7 @@ function Signup() {
                       
                         type="password"
                         placeholder="Enter your password"
+                        autoComplete="new-password" 
                         {...register("password", {
                             required: true,})}
                         />
