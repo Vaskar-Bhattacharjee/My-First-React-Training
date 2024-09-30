@@ -14,7 +14,8 @@ import EditPost from "./pages/EditPost";
 import Post from "./pages/Post";
 
 import Allpost from "./pages/Allpost";
-import Home from "./pages/Home.jsx"
+import Home from "./pages/Home.jsx";
+import PasswordRecover from './pages/PasswordRecover.jsx'
 
 // Create a React Router instance and render the App component inside the root element.
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+        {
+            path: "/password-recovery",
+            element: <PasswordRecover />,
+        }
     ],
 },
 ])

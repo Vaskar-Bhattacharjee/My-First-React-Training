@@ -52,7 +52,8 @@ function PostForm({post}) {
           data.featureimage = file.$id; 
           const dbPost = await service.createPost({
             ...data,
-            userId: userData.$id,
+            userId: userData.$id
+            
           });
   
           if (dbPost) {
@@ -108,7 +109,8 @@ return (
         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
       }}
     />
-    <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} className="mb-4 bg-slate-800" />
+    <RTE label="Content :" name="content" control={control} 
+    defaultValue={getValues("content")} className="mb-4 bg-slate-800" />
   </div>
   
   <div className="w-1/3 px-2">
@@ -134,7 +136,9 @@ return (
       {...register("status", { required: true })}
     />
     <Button 
-      type="submit" >
+      type="submit" 
+      className="w-full"
+      >
       {post ? "Update" : "Submit"}
     </Button>
   </div>

@@ -80,11 +80,15 @@ function Login() {
                   </div>
                 </div>
                 <div>
-                <Button type="submit" >
+                <Button type="submit"
+                className='w-full'
+                >
                                   Log In
                               </Button>
                 </div>
+               
               </div>
+              <p> forget Password? <Link to="/password-recovery" >click here</Link> </p>
             </form>
       
           </div>

@@ -12,6 +12,7 @@ import PostCard from "./PostCard.jsx"
 import AuthLayout from "./AuthLayout.jsx"
 import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
+import PasswordRecovery from "./PasswordRecovery.jsx";
 export {
     Header,
     Footer,
@@ -26,7 +27,8 @@ export {
     PostCard,
     AuthLayout,
     Signup,
-    Login
+    Login,
+    PasswordRecovery
     // Add more components here as needed
  
 };

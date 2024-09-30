@@ -88,7 +88,9 @@ function Signup() {
             </div>
           </div>
           <div>
-          <Button type="submit" >
+          <Button type="submit" 
+          className='w-full'
+          >
                             Create Account
                         </Button>
           </div>

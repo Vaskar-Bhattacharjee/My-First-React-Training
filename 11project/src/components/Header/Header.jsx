@@ -32,11 +32,27 @@ function Header() {
               isMobile ? 'w-full' : ''
             } px-6 py-2 text-lg text-white font-medium rounded-lg bg-gradient-to-r from-gold-500 to-burgundy-600 hover:bg-gradient-to-l hover:from-gold-600 hover:to-burgundy-700 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2`}
           >
-            {item.name}
+             {item.name === 'Home' ? (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 mt-[-7px] w-5 mr-2 inline-block"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9l9-7 9 7v12a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                </svg>
+                Home
+              </>
+            ) : (
+              item.name
+            )}
           </button>
         </li>
       ) : null
     );
+
 
   return (
     <header className="py-4 bg-gradient-to-b from-gray-800 to-gray-900 sticky top-0 z-50 shadow-lg transition-all">

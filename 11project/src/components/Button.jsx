@@ -8,7 +8,7 @@ function Button({
 
  }) {
     return (
-        <button className= {`inline-flex w-full items-center justify-center 
+        <button className= {`inline-flex  items-center justify-center 
     rounded-lg bg-gradient-to-r from-black to-gray-800 px-5 py-3 
     font-semibold text-white shadow-lg 
     hover:from-gray-900 hover:to-black hover:shadow-xl 

@@ -94,6 +94,8 @@ export class Service{
             )
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error", error);
+            console.log(conf.appwriteDatabaseId);
+            console.log(conf.appwriteCollectionId);
             return false
 
         }

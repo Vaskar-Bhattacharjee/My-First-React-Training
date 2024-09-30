@@ -7,6 +7,7 @@ function LogoutBtn() {
     const logoutHandler =  () => {
         authService.logout().then(()=>{
             dispatch(logout());
+            window.location.reload();
             
         })
         
