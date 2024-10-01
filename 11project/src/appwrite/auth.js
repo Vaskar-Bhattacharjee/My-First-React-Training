@@ -97,6 +97,20 @@ export class AuthService {
             console.log("Appwrite serive :: logout :: error", error);
         }
     }
+    async passwordRecover(email) {
+        try {
+            const redirectUrl = "http://localhost:5173/password-recovery";
+    
+            await this.account.createRecovery(email, redirectUrl);
+           
+            console.log("Recovery email sent successfully.");
+        } catch (error) {
+            console.log('Appwrite error::passwordRecover::', error);
+            
+            console.error("Failed to send recovery email.");
+        }
+    }
+    
 }
 
 

@@ -10,24 +10,32 @@ function PasswordRecovery() {
   const [message, setMessage] = useState("");
   const { register, handleSubmit } = useForm();
 
-  const recoverPassword = async (data) => {
-    setError("");
-    setMessage("");
-    try {
-      // Replace this with your password recovery logic
-      const response = await service.recoverPassword(data.email);
-      if (response) {
-        setMessage("A password recovery link has been sent to your email.");
-        // Redirect to login page after successful email submission
-        setTimeout(() => {
-          navigate('/login'); // Redirect after 3 seconds
-        }, 3000);
-      }
-    } catch (error) {
-      setError("Failed to send recovery email. Please try again.");
-    }
-  };
+  const [loading, setLoading] = useState(false);
 
+  const recoverPassword = async (data) => {
+      setError("");
+      setMessage("");
+      setLoading(true);
+      try {
+          await service.passwordRecover(data.email);
+          setMessage("A password recovery link has been sent to your email.");
+          setTimeout(() => {
+              navigate('/login'); 
+          }, 3000);
+      } catch (error) {
+          setError("Failed to send recovery email. Please try again.");
+      } finally {
+          setLoading(false);
+      }
+  };
+  
+  <Button type="submit" className="w-full" disabled={loading}>
+      {loading ? 'Sending...' : 'Send Recovery Link'}
+  </Button>
+
+
+
+  
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-15 sm:px-6 sm:py-16 lg:px-8 lg:py-10">
