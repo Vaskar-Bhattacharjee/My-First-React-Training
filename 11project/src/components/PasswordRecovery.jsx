@@ -5,7 +5,7 @@ import service from '../appwrite/auth';
 import { useForm } from 'react-hook-form';
 
 function PasswordRecovery() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  //const navigate = useNavigate(); // Initialize useNavigate
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const { register, handleSubmit } = useForm();
@@ -19,9 +19,7 @@ function PasswordRecovery() {
       try {
           await service.passwordRecover(data.email);
           setMessage("A password recovery link has been sent to your email.");
-          setTimeout(() => {
-              navigate('/login'); 
-          }, 3000);
+     
       } catch (error) {
           setError("Failed to send recovery email. Please try again.");
       } finally {

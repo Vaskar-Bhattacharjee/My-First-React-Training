@@ -56,7 +56,7 @@ function Header() {
 
   return (
     <header className="py-4 bg-gradient-to-b from-gray-800
-     to-gray-900 sticky top-0 z-50 shadow-2xl transition-all">
+     to-gray-600 sticky top-0 z-50 shadow-2xl transition-all">
       <Container>
         <nav className="flex items-center justify-between">
           <div className="mr-6">

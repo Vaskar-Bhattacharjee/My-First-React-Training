@@ -13,6 +13,7 @@ import AuthLayout from "./AuthLayout.jsx"
 import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 import PasswordRecovery from "./PasswordRecovery.jsx";
+import ConfirmPassword from "./ConfirmPassword.jsx";
 export {
     Header,
     Footer,
@@ -28,7 +29,8 @@ export {
     AuthLayout,
     Signup,
     Login,
-    PasswordRecovery
+    PasswordRecovery,
+    ConfirmPassword,
     // Add more components here as needed
  
 };

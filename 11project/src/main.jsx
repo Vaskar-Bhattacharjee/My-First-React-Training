@@ -15,7 +15,8 @@ import Post from "./pages/Post";
 
 import Allpost from "./pages/Allpost";
 import Home from "./pages/Home.jsx";
-import PasswordRecover from './pages/PasswordRecover.jsx'
+import PasswordRecover from './pages/PasswordRecover.jsx';
+import Confirm from './pages/Confirm.jsx'
 
 // Create a React Router instance and render the App component inside the root element.
 const router = createBrowserRouter([
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
         {
             path: "/password-recovery",
             element: <PasswordRecover />,
+        },
+        {
+            path: "/confirm-password",
+            element: <Confirm />,
         }
     ],
 },

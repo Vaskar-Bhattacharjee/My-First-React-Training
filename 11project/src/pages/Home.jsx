@@ -28,9 +28,9 @@ function Home() {
             <h1 className="text-6xl font-bold  mt-10 text-gray-800 text-center p-6 bg-transparent rounded-lg">
               Welcome to Blog Website!
             </h1>
-            <p className=' text-1xl text-gray-600 lg:mb-5 italic ' > Passionate about exploring the world and sharing unique travel experiences. From hidden gems to travel tips, discover everything you need for your next adventure. 
+            <p className=' text-1xl text-gray-600 lg:mb-1 italic ' > Passionate about exploring the world and sharing unique travel experiences. From hidden gems to travel tips, discover everything you need for your next adventure. 
               Join us as we turn journeys into stories! </p>
-            <h3 className="lg:text-3xl font-bold mb-[-1.5rem] 
+            <h3 className="lg:text-3xl font-bold mb-[-1.3rem] 
             mt-[1.3rem] text-gray-800 text-center p-6 bg-transparent
              rounded-lg">
               Login to See Posts
