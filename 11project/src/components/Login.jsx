@@ -31,12 +31,12 @@ function Login() {
     }
     return (
         <section>
-        <div className="flex items-center justify-center px-4 py-15 sm:px-6 sm:py-16 lg:px-8 lg:py-10">
-          <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md ">
+        <div className="flex items-center justify-center px-4 py-15 sm:px-6 sm:py-16 lg:px-8 lg:py-10 sm:mb-3">
+          <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md mt-4 ">
             <h2 className="text-center text-2xl font-bold leading-tight text-black">
             Log In to your account
             </h2>
-            <p className="mt-2 text-center text-base text-gray-600">
+            <p className="mt-0 text-center text-base text-gray-600">
               Don't have an account?{" "}
               <Link
                               to="/signup"
@@ -88,7 +88,7 @@ function Login() {
                 </div>
                
               </div>
-              <p> forget Password? <Link to="/password-recovery" >click here</Link> </p>
+              <p className="mt-2 m-3 text-center text-base text-gray-600"> forget Password? <Link to="/password-recovery" className="font-medium text-primary transition-all duration-200 hover:underline" >click here</Link> </p>
             </form>
       
           </div>

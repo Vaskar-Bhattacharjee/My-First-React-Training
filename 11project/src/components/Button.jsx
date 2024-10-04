@@ -13,7 +13,8 @@ function Button({
     font-semibold text-white shadow-lg 
     hover:from-gray-900 hover:to-black hover:shadow-xl 
     transition-all duration-300 ease-in-out 
-    focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-offset-2 
+    lg:mt-3
+    focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 
     active:scale-95 active:shadow-sm mb-3 ${className} `} { ...props} >
         {children}
         </button>
